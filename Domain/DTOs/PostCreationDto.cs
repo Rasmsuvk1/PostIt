@@ -14,5 +14,6 @@ public class PostCreationDto
         Username = username;
         Title = title;
         Body = body;
+        
     }
 }
