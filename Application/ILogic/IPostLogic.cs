@@ -6,4 +6,5 @@ namespace Application.ILogic;
 public interface IPostLogic
 {
     Task<Post> CreateAsync(PostCreationDto userToCreate);
+    
 }
