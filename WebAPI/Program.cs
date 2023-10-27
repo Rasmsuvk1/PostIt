@@ -15,7 +15,9 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<FileContext>();
 builder.Services.AddScoped<IUserDao, UserDao>();
+builder.Services.AddScoped<IPostDao, PostDao>();
 builder.Services.AddScoped<IUserLogic, UserLogic>();
+builder.Services.AddScoped<IPostLogic, PostLogic>();
 
 var app = builder.Build();
 

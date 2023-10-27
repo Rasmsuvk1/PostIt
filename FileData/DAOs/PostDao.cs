@@ -5,9 +5,19 @@ namespace FileData.DAOs;
 
 public class PostDao : IPostDao
 {
+    private readonly FileContext context;
     
+    public PostDao(FileContext context)
+    {
+        this.context = context;
+    }
     public Task<Post> CreateAsync(Post post)
     {
-        throw new NotImplementedException();
+        
+        context.Posts.Add(post);
+        context.SaveChanges();
+
+        return Task.FromResult(post);
+        
     }
 }
