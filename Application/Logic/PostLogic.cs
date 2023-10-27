@@ -10,13 +10,25 @@ public class PostLogic:IPostLogic
     
     private readonly IPostDao postDao;
     
-    public Task<Post> CreateAsync(PostCreationDto userToCreate)
+    public async Task<Post> CreateAsync(PostCreationDto dto)
     {
-        throw new NotImplementedException();
+        
+        ValidateData(dto);
+        Post toCreate = new Post(new User{username = dto.Username}, dto.Title,dto.Body);
+        
+        Post created = await postDao.CreateAsync(toCreate);
+        
+        return created;
     }
 
-    private static void ValidateData(UserCreationDto userToCreate)
+    private static void ValidateData(PostCreationDto postToCreate)
     {
+        if(postToCreate.Body.Length < 1)
+            throw new Exception("No message!");
+        if(postToCreate.Title.Length < 1)
+            throw new Exception("No Title!");
+        if(postToCreate.Username.Length < 1)
+            throw new Exception("Error concerning validation of username!");
         
     }
 }
