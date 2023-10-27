@@ -1,6 +1,6 @@
 namespace Domain.DTOs;
 
-public class PostUpdateDto
+public class PostCreationDto
 {
     public int Id { get; }
     
@@ -10,7 +10,7 @@ public class PostUpdateDto
     
     public string? Body { get; set; }
 
-    public PostUpdateDto(int id)
+    public PostCreationDto(int id)
     {
         Id = id;
     }
