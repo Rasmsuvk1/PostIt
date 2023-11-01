@@ -10,6 +10,11 @@ public class PostLogic:IPostLogic
     
     private readonly IPostDao postDao;
     
+    public PostLogic(IPostDao postDao)
+    {
+        this.postDao = postDao;
+    }
+    
     public async Task<Post> CreateAsync(PostCreationDto dto)
     {
         

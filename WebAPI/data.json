@@ -1,1 +1,1 @@
-{"Users":[{"email":"o@ole.dk","password":"Olfert123","username":"Ollibollisnolli"},{"email":"testtest","password":"testtest","username":"test"}],"Posts":[]}
+{"Users":[],"Posts":[{"Id":1,"User":{"email":null,"password":null,"username":"Test"},"Title":"Testing","Body":"This is a great test!"}]}
