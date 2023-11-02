@@ -26,6 +26,12 @@ public class PostLogic:IPostLogic
         return created;
     }
 
+    public async Task<Comment> AddCommentAsync(CommentDto dto)
+    {
+        Comment created = await postDao.AddCommentAsync(dto);
+        return created;
+    }
+
     private static void ValidateData(PostCreationDto postToCreate)
     {
         if(postToCreate.Body.Length < 1)

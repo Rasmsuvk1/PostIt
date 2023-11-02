@@ -30,4 +30,19 @@ public class PostController: ControllerBase
             return StatusCode(500, e.Message);
         }
     }
+    
+    [HttpPut]
+    public async Task<ActionResult<Comment>> AddCommentToPostAsync( CommentDto dto)
+    {
+        try
+        {
+            Comment created = await postLogic.AddCommentAsync(dto);
+            return Created($"/post/{created.text}", created);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e.Message);
+            return StatusCode(500, e.Message);
+        }
+    }
 }

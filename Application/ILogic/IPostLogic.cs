@@ -6,5 +6,6 @@ namespace Application.ILogic;
 public interface IPostLogic
 {
     Task<Post> CreateAsync(PostCreationDto userToCreate);
-    
+
+    Task<Comment> AddCommentAsync(CommentDto dto);
 }

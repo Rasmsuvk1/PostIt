@@ -1,1 +1,1 @@
-{"Users":[],"Posts":[{"Id":1,"User":{"email":null,"password":null,"username":"Test"},"Title":"Testing","Body":"This is a great test!"}]}
+{"Users":[],"Posts":[{"Id":1,"User":{"email":null,"password":null,"username":"Rasmus"},"Title":"Testing","Body":"This was a test","comments":[]},{"Id":2,"User":{"email":null,"password":null,"username":"Rasmus"},"Title":"Test","Body":"This Was a test","comments":[{"username":"Test","text":"It was a really good test bro, It works!"},{"username":"Henry","text":"It was a really good test bro, It works!"}]}]}

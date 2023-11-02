@@ -6,11 +6,19 @@ public class Post
     public User User { get; set; }
     public string Title { get; set; }
     public string Body{ get; set; }
+    
+    public List<Comment> comments { get; set; }
 
     public Post( User user, string title, string body)
     {
         User = user;
         Title = title;
         Body = body;
+        comments = new List<Comment>();
+    }
+    
+    public void addComment(Comment comment)
+    {
+        comments.Add(comment);
     }
 }
