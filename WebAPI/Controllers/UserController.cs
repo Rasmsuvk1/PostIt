@@ -31,5 +31,22 @@ public class UserController : ControllerBase
             return StatusCode(500, e.Message);
         }
     }
+
+    [HttpGet]
+    public async Task<ActionResult<ReturnLoginDto>> loginAsync([FromQuery] string? email, [FromQuery] string? password)
+    {
+        try
+        {
+            LoginDto dto = new LoginDto(email, password);
+            ReturnLoginDto returnDto = await userLogic.loginAsync(dto);
+            return Ok(returnDto);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            return StatusCode(500, e.Message);
+        }
+        
+    }
     
 }

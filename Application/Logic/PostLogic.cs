@@ -32,6 +32,12 @@ public class PostLogic:IPostLogic
         return created;
     }
 
+    public async Task<Post> DeleteAsync(string userToDelete)
+    {
+        Post postToDelete = await postDao.DeleteAsync(userToDelete);
+        return postToDelete;
+    }
+
     private static void ValidateData(PostCreationDto postToCreate)
     {
         if(postToCreate.Body.Length < 1)

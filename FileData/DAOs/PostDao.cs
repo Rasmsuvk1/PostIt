@@ -44,4 +44,19 @@ public class PostDao : IPostDao
         context.SaveChanges();
         return Task.FromResult(comment);
     }
+
+    public Task<Post> DeleteAsync(string userToDelete)
+    {
+        Post? post =context.Posts.FirstOrDefault(post => post.Title == userToDelete);
+        if (post == null)
+        {
+            throw new Exception($"Post with name {userToDelete} does not exist!");
+        }
+
+        context.Posts.Remove(post);
+        context.SaveChanges();
+        return Task.FromResult(post);
+
+
+    }
 }

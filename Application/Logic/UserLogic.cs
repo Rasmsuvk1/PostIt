@@ -33,6 +33,23 @@ public class UserLogic : IUserLogic
         
         return created;
     }
+
+    public async Task<ReturnLoginDto> loginAsync(LoginDto dto)
+    {
+        ValidateLoginData(dto);
+        ReturnLoginDto returnDto = await userDao.LoginAsync(dto);
+        return returnDto;
+    }
+
+    private static void ValidateLoginData(LoginDto loginInfo)
+    {
+        if(loginInfo.email.Length < 1)
+            throw new Exception("Email field is empty");
+        if (loginInfo.password.Length < 1)
+            throw new Exception("Password field is empty");
+    }
+    
+
     private static void ValidateData(UserCreationDto userToCreate)
     {
         string userName = userToCreate.UserName;

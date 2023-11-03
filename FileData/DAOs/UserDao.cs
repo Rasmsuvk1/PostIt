@@ -1,5 +1,6 @@
 using Application.IDao;
 using Domain;
+using Domain.DTOs;
 
 namespace FileData.DAOs;
 
@@ -30,5 +31,16 @@ public class UserDao : IUserDao
         return Task.FromResult(existing);
 
     }
-    
+
+    public Task<ReturnLoginDto> LoginAsync(LoginDto dto)
+    {
+        User? loggedIn = context.Users.FirstOrDefault(user =>   user.email.Equals(dto.email)|| user.password.Equals(dto.password));
+        if (loggedIn == null)
+        {
+            throw new Exception("No User was found with the information you provided.");
+        }
+        ReturnLoginDto returnDto = new ReturnLoginDto(loggedIn.username, 1);
+        return Task.FromResult(returnDto);
+
+    }
 }

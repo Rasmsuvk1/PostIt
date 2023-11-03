@@ -45,4 +45,19 @@ public class PostController: ControllerBase
             return StatusCode(500, e.Message);
         }
     }
+    
+    [HttpDelete]
+    public async Task<ActionResult> DeletePostAsync(string postToDelete)
+    {
+        try
+        {
+            Post created = await postLogic.DeleteAsync(postToDelete);
+            return Ok();
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e.Message);
+            return StatusCode(500, e.Message);
+        }
+    }
 }

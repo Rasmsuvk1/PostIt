@@ -8,4 +8,5 @@ public interface IPostDao
     Task<Post> CreateAsync(Post post);
 
     Task<Comment> AddCommentAsync(CommentDto dto);
+    Task<Post> DeleteAsync(string userToDelete);
 }

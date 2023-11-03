@@ -8,4 +8,6 @@ public interface IPostLogic
     Task<Post> CreateAsync(PostCreationDto userToCreate);
 
     Task<Comment> AddCommentAsync(CommentDto dto);
+    
+    Task<Post> DeleteAsync(string userToDelete);
 }
