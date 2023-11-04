@@ -7,7 +7,7 @@ using Domain.DTOs;
 
 namespace WebAPI.Controllers;
 [ApiController]
-[Route("controller")]
+[Route("[controller]")]
 public class UserController : ControllerBase
 {
     private readonly IUserLogic userLogic;
