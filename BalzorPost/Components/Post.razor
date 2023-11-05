@@ -1,0 +1,13 @@
+<li>
+    <h2>@Title</h2>
+    <p>@Text</p>
+    <input type="text" placeholder="Comment"/>
+</li>
+
+@code {
+    [Parameter]
+    public string Title { get; set; }
+
+    [Parameter]
+    public string Text { get; set; }
+}

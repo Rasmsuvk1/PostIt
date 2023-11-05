@@ -9,16 +9,14 @@
 
 <h3>View All Posts</h3>
 <div>
-    <button @onclick="Get">Load Posts</button>
-    @resultMsg
-
-    @if (posts != null)
+    @if (posts.Any())
     {
         <ul>
             @foreach (var e in posts)
             {
                 <li>@e.Title</li>
                 <p>@e.Body</p>
+                <input type="text" class = "commentInput" placeholder="comment" />
             }
         </ul>
     }
@@ -28,9 +26,13 @@
 
 @code {
     
-    
-    private string resultMsg = "";
     private IEnumerable<Post> posts;
+    
+    //A method that runs when the page is initialized
+    protected override async Task OnInitializedAsync()
+    {
+        await Get();
+    }
 
     private async Task Get()
     {
@@ -40,7 +42,7 @@
         }
         catch (Exception e)
         {
-            resultMsg = e.Message;
+            Console.WriteLine(e);
         }
     }
 }
