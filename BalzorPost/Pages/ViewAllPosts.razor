@@ -1,9 +1,41 @@
 @page "/ViewAllPosts"
-<h3>ViewAllPosts</h3>
+@using Domain.DTOs
+@using HttpsClients.ClientInterfaces
+@using System.Collections
+@using Domain
+@inject IPostService postService
+
+
+
+<h3>View All Posts</h3>
 
 <div>
-    
+    <button @onclick="Get">View all posts</button>
 </div>
+
+
 @code {
     
+    
+    private string resultMsg = "";
+
+    private async Task Get()
+    {
+        resultMsg = "";
+
+        try
+        {
+           IEnumerable<Post> posts = await postService.Get();
+            resultMsg = "Here are all posts";
+            
+            foreach(var e in posts) {
+                Console.WriteLine("den er ikke tom");
+            }
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            resultMsg = e.Message;
+        }
+    }
 }
