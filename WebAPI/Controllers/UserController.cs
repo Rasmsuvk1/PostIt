@@ -18,11 +18,10 @@ public class UserController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<ActionResult<User>> CreateAsync([FromQuery] string? username, [FromQuery] string? email, [FromQuery] string? password)
+    public async Task<ActionResult<User>> CreateAsync(UserCreationDto dto)
     {
         try
         {
-            UserCreationDto dto = new UserCreationDto(username, email, password);
             User user = await userLogic.CreateAsync(dto);
             return Created($"/users/{user.username}", user);
         }
@@ -34,11 +33,10 @@ public class UserController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<ReturnLoginDto>> loginAsync([FromQuery] string? email, [FromQuery] string? password)
+    public async Task<ActionResult<ReturnLoginDto>> loginAsync(LoginDto dto)
     {
         try
         {
-            LoginDto dto = new LoginDto(email, password);
             ReturnLoginDto returnDto = await userLogic.loginAsync(dto);
             return Ok(returnDto);
         }
