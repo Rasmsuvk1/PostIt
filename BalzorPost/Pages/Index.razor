@@ -3,6 +3,7 @@
 @using Domain.DTOs
 @using HttpsClients.ClientInterfaces
 @using BalzorPost.Data
+@inject NavigationManager Navigation
 @inject IUserService userService
 
 <PageTitle>Index</PageTitle>
@@ -29,7 +30,10 @@
             UserInformation.SetUserInfo(returnDto.username, returnDto.authenticationLvl);
             email = "";
             password = "";
-            Console.WriteLine(UserInformation.getUserName());
+            if (!UserInformation.getUserName().Equals(null))
+            {
+                Navigation.NavigateTo("/ViewAllPosts"); 
+            }
 
         }
         catch (Exception e)
