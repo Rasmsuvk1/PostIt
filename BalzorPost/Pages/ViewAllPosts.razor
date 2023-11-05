@@ -8,33 +8,40 @@
 
 
 <h3>View All Posts</h3>
-
 <div>
-    <button @onclick="Get">View all posts</button>
+    <button @onclick="Get">Load Posts</button>
+    @resultMsg
+
+    @if (posts != null)
+    {
+        <ul>
+            @foreach (var e in posts)
+            {
+                <li>@e.Title</li>
+                <p>@e.Body</p>
+            }
+        </ul>
+    }
 </div>
+
 
 
 @code {
     
     
     private string resultMsg = "";
+    private IEnumerable<Post> posts;
 
     private async Task Get()
     {
-        resultMsg = "";
+        resultMsg = "Loading posts..";
 
         try
         {
-           IEnumerable<Post> posts = await postService.Get();
-            resultMsg = "Here are all posts";
-            
-            foreach(var e in posts) {
-                Console.WriteLine("den er ikke tom");
-            }
+            posts = await postService.Get();
         }
         catch (Exception e)
         {
-            Console.WriteLine(e);
             resultMsg = e.Message;
         }
     }
