@@ -8,7 +8,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Application\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileData", "FileData\FileData.csproj", "{01BDB95C-82A1-445F-B13C-D7BB51B263D3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorPost", "BlazorPost\BlazorPost.csproj", "{1038D55B-D1F3-4200-8B5C-3A5365A2F184}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BalzorPost", "BalzorPost\BalzorPost.csproj", "{1038D55B-D1F3-4200-8B5C-3A5365A2F184}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HttpsClients", "HttpsClients\HttpsClients.csproj", "{772E401C-EBFA-49B0-8E49-6823DC9241FC}"
 	ProjectSection(ProjectDependencies) = postProject
