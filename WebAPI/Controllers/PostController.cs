@@ -60,4 +60,20 @@ public class PostController: ControllerBase
             return StatusCode(500, e.Message);
         }
     }
+
+    [HttpGet]
+   public async Task<ActionResult<ICollection<Post>>> GetAllPosts()
+    {
+        try
+        {
+            ICollection<Post> allPosts = await postLogic.GetAllPosts();
+            return Ok(allPosts);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e.Message);
+            return StatusCode(500, e.Message);
+        }
+        
+    }
 }

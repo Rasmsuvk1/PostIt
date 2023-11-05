@@ -10,4 +10,6 @@ public interface IPostLogic
     Task<Comment> AddCommentAsync(CommentDto dto);
     
     Task<Post> DeleteAsync(string userToDelete);
+    
+    Task<ICollection<Post>> GetAllPosts();
 }

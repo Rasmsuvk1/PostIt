@@ -38,6 +38,11 @@ public class PostLogic:IPostLogic
         return postToDelete;
     }
 
+    public async Task<ICollection<Post>> GetAllPosts()
+    {
+        return await postDao.GetAllPosts();
+    }
+
     private static void ValidateData(PostCreationDto postToCreate)
     {
         if(postToCreate.Body.Length < 1)

@@ -56,7 +56,10 @@ public class PostDao : IPostDao
         context.Posts.Remove(post);
         context.SaveChanges();
         return Task.FromResult(post);
+    }
 
-
+    public Task<ICollection<Post>> GetAllPosts()
+    {
+        return Task.FromResult(context.Posts);
     }
 }

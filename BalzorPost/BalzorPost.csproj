@@ -11,8 +11,5 @@
       <ProjectReference Include="..\HttpsClients\HttpsClients.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Data\" />
-    </ItemGroup>
 
 </Project>
