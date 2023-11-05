@@ -1,11 +1,23 @@
 ﻿@page "/"
 
+@using Domain.DTOs
+@using HttpsClients.ClientInterfaces
+@using BalzorPost.Data
+@inject IUserService userService
+
 <PageTitle>Index</PageTitle>
 
-    <div class = "loginBody">
-        <h1>Post It!</h1>
-        <p>Please login</p>
-        <input type="text" placeholder="Email" @bind:event="oninput"/>
-        <input type="text" placeholder="Default Value" @bind:event="oninput"/>
+<div class = "loginBody">
+    <h1>Post It!</h1>
+    <p>Please login</p>
+    <input type="text" @bind="email" placeholder="Email" @bind:event="oninput"/>
+    <input type="text" @bind="password" placeholder="Default Value" @bind:event="oninput"/>
+    <button onclick="Login">Login</button>
 
-    </div>
+</div>
+
+@code {
+    private string email = "";
+    private string password = "";
+
+}

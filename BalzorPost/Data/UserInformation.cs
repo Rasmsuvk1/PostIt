@@ -13,5 +13,15 @@ public static class UserInformation
 
     }
 
+    public static string getUserName()
+    {
+        return Username;
+    }
+    
+    public static int getAuthLvl()
+    {
+        return AuthenticationLvl;
+    }
+
 
 }
