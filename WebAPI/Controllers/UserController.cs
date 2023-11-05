@@ -33,8 +33,9 @@ public class UserController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<ReturnLoginDto>> loginAsync(LoginDto dto)
+    public async Task<ActionResult<ReturnLoginDto>> loginAsync([FromQuery]string email, string password)
     {
+        LoginDto dto = new LoginDto(email, password);
         try
         {
             ReturnLoginDto returnDto = await userLogic.loginAsync(dto);

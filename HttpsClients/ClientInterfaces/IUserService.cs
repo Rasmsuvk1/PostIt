@@ -7,4 +7,6 @@ public interface IUserService
 {
     Task<User> Create(UserCreationDto dto);
 
+    Task<ReturnLoginDto> Login(LoginDto dto);
+
 }

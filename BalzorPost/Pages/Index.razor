@@ -11,13 +11,31 @@
     <h1>Post It!</h1>
     <p>Please login</p>
     <input type="text" @bind="email" placeholder="Email" @bind:event="oninput"/>
-    <input type="text" @bind="password" placeholder="Default Value" @bind:event="oninput"/>
-    <button onclick="Login">Login</button>
+    <input type="text" @bind="password" placeholder="Password" @bind:event="oninput"/>
+    <button @onclick="Login">Login</button>
 
 </div>
 
 @code {
     private string email = "";
     private string password = "";
+
+    private async Task Login()
+    {
+
+        try
+        {
+            ReturnLoginDto returnDto = await userService.Login(new LoginDto(email, password));
+            UserInformation.SetUserInfo(returnDto.username, returnDto.authenticationLvl);
+            email = "";
+            password = "";
+            Console.WriteLine(UserInformation.getUserName());
+
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+        }
+    }
 
 }

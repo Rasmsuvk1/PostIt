@@ -47,7 +47,6 @@
         try
         {
             await userService.Create(new UserCreationDto(username, email, password));
-            Console.WriteLine("Hey man");
             username = "";
             email = "";
             password = "";
