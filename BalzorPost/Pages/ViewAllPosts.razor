@@ -2,6 +2,7 @@
 @using Domain.DTOs
 @using HttpsClients.ClientInterfaces
 @using System.Collections
+@using BalzorPost.Data
 @using Domain
 @inject IPostService postService
 
@@ -9,14 +10,16 @@
 
 <h3>View All Posts</h3>
 <div>
-    @if (posts.Any())
+    @if (posts != null)
     {
         <ul>
             @foreach (var e in posts)
             {
                 <li>@e.Title</li>
                 <p>@e.Body</p>
-                <input type="text" class = "commentInput" placeholder="comment" />
+                <input type="text" class="commentInput" placeholder="comment" @bind="commentText"/>
+                <button @onclick="() => Comment(e.Title)">Comment</button>
+
             }
         </ul>
     }
@@ -27,6 +30,8 @@
 @code {
     
     private IEnumerable<Post> posts;
+    private string commentText = "";
+    
     
     //A method that runs when the page is initialized
     protected override async Task OnInitializedAsync()
@@ -45,4 +50,17 @@
             Console.WriteLine(e);
         }
     }
+    private async Task Comment(string title)
+    {
+        try
+        {
+            await postService.CreateCommentAsync(new CommentDto(title, UserInformation.getUserName(), commentText));
+        }
+        catch(Exception e)
+        {
+            Console.WriteLine(e);
+
+        }
+    }
+}
 }

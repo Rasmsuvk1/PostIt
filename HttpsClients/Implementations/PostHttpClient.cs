@@ -5,6 +5,7 @@ using Domain;
 using Domain.DTOs;
 using HttpsClients.ClientInterfaces;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.VisualBasic;
 
 namespace HttpsClients.Implementations;
 
@@ -54,6 +55,22 @@ public class PostHttpClient : IPostService
         })!;
         return post;
         
+    }
+
+    public async Task<Comment> CreateCommentAsync(CommentDto dto)
+    {
+        HttpResponseMessage response = await client.PutAsJsonAsync("/Post", dto);
+        string result = await response.Content.ReadAsStringAsync();
+        if (!response.IsSuccessStatusCode)
+        {
+            throw new Exception(result);
+        }
+
+        Comment comment = JsonSerializer.Deserialize<Comment>(result, new JsonSerializerOptions
+        {
+            PropertyNameCaseInsensitive = true
+        })!;
+        return comment;
     }
 }
 
