@@ -38,5 +38,22 @@ public class PostHttpClient : IPostService
         return post;
     }
 
+    public async Task<Post> CreatePostAsync(PostCreationDto dto)
+    {
+        
+        HttpResponseMessage response = await client.PostAsJsonAsync("/Post", dto);
+        string result = await response.Content.ReadAsStringAsync();
+        if (!response.IsSuccessStatusCode)
+        {
+            throw new Exception(result);
+        }
+
+        Post post = JsonSerializer.Deserialize<Post>(result, new JsonSerializerOptions
+        {
+            PropertyNameCaseInsensitive = true
+        })!;
+        return post;
+        
+    }
 }
 

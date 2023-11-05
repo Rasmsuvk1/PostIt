@@ -1,4 +1,5 @@
 using Domain;
+using Domain.DTOs;
 
 
 namespace HttpsClients.ClientInterfaces;
@@ -6,4 +7,5 @@ namespace HttpsClients.ClientInterfaces;
 public interface IPostService
 {
     Task<IEnumerable<Post>> Get();
+    Task<Post> CreatePostAsync(PostCreationDto dto);
 }

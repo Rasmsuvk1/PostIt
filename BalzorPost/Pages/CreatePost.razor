@@ -1,0 +1,45 @@
+@page "/CreatePost"
+@using Domain.DTOs
+@using HttpsClients.ClientInterfaces
+@using BalzorPost.Data
+@inject IPostService postService
+
+<h3>Create a post</h3>
+<div class="card">
+    <h3>Create User</h3>
+    <div class="form-group field">
+      
+        <input type="text" @bind="title" placeholder="Title" @bind:event="oninput"/>
+        
+        <input type="text" @bind="body" placeholder="text" @bind:event="oninput"/>
+       
+    </div>
+    <div class="button-row">
+        <button @onclick="Post"  class="acceptbtn">Post</button>
+    </div>
+</div>
+
+
+@code {
+    private string title = "";
+    private string body = "";
+  
+
+
+    private async Task Post()
+    {
+        try
+        {
+            await postService.CreatePostAsync(new PostCreationDto(UserInformation.getUserName(), title, body));
+            title = "";
+            body = "";
+            
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+           
+        }
+    }
+
+}

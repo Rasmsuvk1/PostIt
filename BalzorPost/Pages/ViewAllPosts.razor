@@ -34,8 +34,6 @@
 
     private async Task Get()
     {
-        resultMsg = "Loading posts..";
-
         try
         {
             posts = await postService.Get();
