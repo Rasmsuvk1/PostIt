@@ -18,10 +18,11 @@ public class UserController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<ActionResult<User>> CreateAsync(UserCreationDto dto)
+    public async Task<ActionResult<User>> CreateAsync([FromQuery] string? username, [FromQuery] string? email, [FromQuery] string? password)
     {
         try
         {
+            UserCreationDto dto = new UserCreationDto(username, email, password);
             User user = await userLogic.CreateAsync(dto);
             return Created($"/users/{user.username}", user);
         }

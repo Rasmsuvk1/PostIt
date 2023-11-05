@@ -17,10 +17,11 @@ public class PostController: ControllerBase
     }
     
     [HttpPost]
-    public async Task<ActionResult<Post>> CreatePostAsync( PostCreationDto dto)
+    public async Task<ActionResult<Post>> CreatePostAsync([FromQuery] string? username, [FromQuery] string? title, [FromQuery] string? body)
     {
         try
         {
+            PostCreationDto dto = new PostCreationDto(username, title, body);
             Post created = await postLogic.CreateAsync(dto);
             return Created($"/post/{created.Title}", created);
         }
@@ -32,10 +33,11 @@ public class PostController: ControllerBase
     }
     
     [HttpPut]
-    public async Task<ActionResult<Comment>> AddCommentToPostAsync( CommentDto dto)
+    public async Task<ActionResult<Comment>> AddCommentToPostAsync([FromQuery] string? postname, [FromQuery] string? username, [FromQuery] string? text)
     {
         try
         {
+            CommentDto dto = new CommentDto(postname, username, text);
             Comment created = await postLogic.AddCommentAsync(dto);
             return Created($"/post/{created.text}", created);
         }
