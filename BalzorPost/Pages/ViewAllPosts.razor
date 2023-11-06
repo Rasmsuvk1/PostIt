@@ -14,11 +14,12 @@
         <ul>
             @foreach (var e in posts)
             {
-                <li>@e.Title</li>
+                <div class="card">
+                <p>@e.Title</p>
                 <p>@e.Body</p>
                 <input type="text" class="commentInput" placeholder="comment" @bind="commentText"/>
                 <button @onclick="() => Comment(e.Title)">Comment</button>
-
+                </div>
             }
         </ul>
     }
