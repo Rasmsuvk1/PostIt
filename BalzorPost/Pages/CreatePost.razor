@@ -3,18 +3,20 @@
 @using HttpsClients.ClientInterfaces
 @using BalzorPost.Data
 @inject IPostService postService
+<link href="css/CommonStyles.css" rel="stylesheet"/>
 
-<h3>Create a post</h3>
+
 <div class="card">
+    <h3>Create a post</h3>
     <div class="form-group field">
-      
+
         <input type="text" @bind="title" placeholder="Title" @bind:event="oninput"/>
-        
+
         <input type="text" @bind="body" placeholder="text" @bind:event="oninput"/>
-       
+
     </div>
     <div class="button-row">
-        <button @onclick="Post"  class="acceptbtn">Post</button>
+        <button @onclick="Post" class="acceptbtn">Post</button>
     </div>
 </div>
 

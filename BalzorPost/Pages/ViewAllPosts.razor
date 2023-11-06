@@ -5,11 +5,10 @@
 @using BalzorPost.Data
 @using Domain
 @inject IPostService postService
+<link href="css/CommonStyles.css" rel="stylesheet"/>
 
-
-
-<h3>View All Posts</h3>
 <div>
+    <h3>View All Posts</h3>
     @if (posts != null)
     {
         <ul>
