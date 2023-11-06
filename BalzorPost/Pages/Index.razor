@@ -14,18 +14,25 @@
     <h1>Post It!</h1>
     <p>Please login</p>
     <form @onsubmit="Login">
-    <input type="text" @bind="email" placeholder="Email" @bind:event="oninput"/>
-    <input type="text" @bind="password" placeholder="Password" @bind:event="oninput"/>
-    <button @onclick="Login">Login</button>
+        <input type="text" @bind="email" placeholder="Email" @bind:event="oninput"/>
+        <input type="text" @bind="password" placeholder="Password" @bind:event="oninput"/>
+        <button @onclick="Login">Login</button>
     </form>
+    <p class="errorMessage" style="color: red;">@errorMessage</p>
 </div>
 
 @code {
     private string email = "";
     private string password = "";
+    private string errorMessage = "";
     
     private async Task Login()
     {
+        if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
+        {
+            errorMessage = "Please fill out both email and password fields.";
+            return;
+        }
 
         try
         {
@@ -44,6 +51,7 @@
         catch (Exception e)
         {
             Console.WriteLine(e);
+            errorMessage = "Invalid email or password. Please try again.";
         }
     }
 
