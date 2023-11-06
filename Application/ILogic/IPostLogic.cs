@@ -11,5 +11,5 @@ public interface IPostLogic
     
     Task<Post> DeleteAsync(string userToDelete);
     
-    Task<ICollection<Post>> GetAllPosts();
+    Task<ICollection<Post>> GetAllPosts(GetPostDto dto);
 }

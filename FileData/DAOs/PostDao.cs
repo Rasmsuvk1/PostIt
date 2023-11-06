@@ -58,8 +58,19 @@ public class PostDao : IPostDao
         return Task.FromResult(post);
     }
 
-    public Task<ICollection<Post>> GetAllPosts()
+    public Task<ICollection<Post>> GetAllPosts(GetPostDto dto)
     {
-        return Task.FromResult(context.Posts);
+        if (dto.ReturnId() == null)
+        {
+            return Task.FromResult(context.Posts);
+        }
+
+        Post? post = context.Posts.FirstOrDefault(post => post.Id == dto.ReturnId());
+        ICollection<Post> returnPost = new List<Post>();
+        if (post!= null)
+        {
+            returnPost.Add(post);  
+        }
+        return Task.FromResult(returnPost);
     }
 }

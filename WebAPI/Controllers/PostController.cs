@@ -63,11 +63,13 @@ public class PostController: ControllerBase
     }
 
     [HttpGet]
-   public async Task<ActionResult<ICollection<Post>>> GetAllPosts()
-    {
+   public async Task<ActionResult<ICollection<Post>>> GetAllPosts([FromQuery]int? id)
+   {
+       GetPostDto dto = new GetPostDto();
+       dto.SetId(id);
         try
         {
-            ICollection<Post> allPosts = await postLogic.GetAllPosts();
+            ICollection<Post> allPosts = await postLogic.GetAllPosts(dto);
             return Ok(allPosts);
         }
         catch (Exception e)

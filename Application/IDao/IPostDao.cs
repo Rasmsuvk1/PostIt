@@ -10,5 +10,5 @@ public interface IPostDao
     Task<Comment> AddCommentAsync(CommentDto dto);
     Task<Post> DeleteAsync(string userToDelete);
 
-    Task<ICollection<Post>> GetAllPosts();
+    Task<ICollection<Post>> GetAllPosts(GetPostDto dto);
 }

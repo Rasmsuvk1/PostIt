@@ -38,9 +38,9 @@ public class PostLogic:IPostLogic
         return postToDelete;
     }
 
-    public async Task<ICollection<Post>> GetAllPosts()
+    public async Task<ICollection<Post>> GetAllPosts(GetPostDto dto)
     {
-        return await postDao.GetAllPosts();
+        return await postDao.GetAllPosts(dto);
     }
 
     private static void ValidateData(PostCreationDto postToCreate)
