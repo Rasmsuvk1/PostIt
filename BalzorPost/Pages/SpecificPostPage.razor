@@ -1,47 +1,44 @@
-@page "/ViewAllPosts"
-@using Domain.DTOs
-@using HttpsClients.ClientInterfaces
-@using System.Collections
+@page "/SpecificPostPage"
 @using BalzorPost.Data
 @using Domain
+@using Domain.DTOs
+@using HttpsClients.ClientInterfaces
 @inject IPostService postService
 @inject IJSRuntime JSRuntime
 
+<h3>SpecificPostPage</h3>
 
-<div>
-    <h3>View All Posts</h3>
-    @if (posts != null)
-    {
-        <ul>
-            @foreach (var e in posts)
             {
-                <div class="card">
-                    <p id="Titlepost">@e.Title</p>
-                    <p>Posted by: @e.User.username</p>
-                <p id="textpost">@e.Body</p>
-                <ul class="commentlist">
-                @foreach(var c in e.comments)
-                {
-                    <li class="commentListItem">
-                        User @c.username commented:
-                         <p id="textpost">@c.text</p>
-                    </li>
-                   
-                }
-                </ul>
-                </div>
-            }
-        </ul>
-    }
+<div class="card">
+    
+    <p id="Titlepost">@thePost.Title</p>
+    <p id="textpost">Posted by: @thePost.User.username</p>
+    <p id="textpost">@thePost.Body</p>
+    
+    <div class="button-container">
+        @if (UserInformation.getAuthLvl() > 0)
+        {
+            <input type="text" class="commentInput" placeholder="comment" @bind="commentText"/>
+            <button class="nice-button" @onclick="() => Comment(thePost.Title)">Comment</button>
+            <button class="nice-button" @onclick="() => Delete(thePost.Title)">Delete</button>
+        }
+    </div>
+    <ul class="commentlist">
+        @foreach (var c in thePost.comments)
+        {
+            <li class="commentListItem">
+                User @c.username commented:
+                <p id="textpost">@c.text</p>
+            </li>
+
+        }
+    </ul>
 </div>
 
-
-
 @code {
-
+    private Post thePost;
     private IEnumerable<Post> posts;
     private string commentText = "";
-    
     
     //A method that runs when the page is initialized
     protected override async Task OnInitializedAsync()
@@ -87,5 +84,5 @@
             Console.WriteLine(e);
         }
     }
-    
+
 }
