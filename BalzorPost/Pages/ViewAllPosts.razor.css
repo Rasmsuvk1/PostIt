@@ -47,16 +47,16 @@ h3 {
 }
 #Titlepost {
     font-size: 30px;
-    font: bold;
+    font-weight: bold;
     margin-bottom: 0.3%;
 }
 .commentInput {
     width: 17%;
-    align-items: first;
+    text-align: center;
 }
 
 .commentListItem {
-    font: bold;
+    font-weight: bold;
     text-align: left;
     list-style-type: none; 
     

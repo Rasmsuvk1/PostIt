@@ -1,8 +1,6 @@
 @page "/ViewAllPosts"
 @using Domain.DTOs
 @using HttpsClients.ClientInterfaces
-@using System.Collections
-@using BalzorPost.Data
 @using Domain
 @inject IPostService postService
 @inject IJSRuntime JSRuntime
@@ -41,7 +39,6 @@
 @code {
 
     private IEnumerable<Post> posts;
-    private string commentText = "";
     
     
     //A method that runs when the page is initialized
@@ -67,32 +64,6 @@
             Console.WriteLine(e);
         }
     }
-    private async Task Comment(string title)
-    {
-        try
-        {
-            await postService.CreateCommentAsync(new CommentDto(title, UserInformation.getUserName(), commentText));
-            await JSRuntime.InvokeVoidAsync("location.reload");;
-
-        }
-        catch(Exception e)
-        {
-            Console.WriteLine(e);
-
-        }
-    }
     
-    private async void Delete(string title){
-
-        try
-        {
-            postService.DeletePostAsync(new DeletePostDto(title));
-            await JSRuntime.InvokeVoidAsync("location.reload");;
-        }
-        catch (Exception e)
-        {
-            Console.WriteLine(e);
-        }
-    }
     
 }
