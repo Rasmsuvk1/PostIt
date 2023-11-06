@@ -5,7 +5,7 @@
 @using BalzorPost.Data
 @inject NavigationManager Navigation
 @inject IUserService userService
-<link href="css/CommonStyles.css" rel="stylesheet"/>
+@inject IJSRuntime JsRuntime
 
 <PageTitle>Index</PageTitle>
 
@@ -34,6 +34,8 @@
             if (!UserInformation.getUserName().Equals(null))
             {
                 Navigation.NavigateTo("/ViewAllPosts"); 
+                await JsRuntime.InvokeVoidAsync("location.reload");
+                
             }
 
         }

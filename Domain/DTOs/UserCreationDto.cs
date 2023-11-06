@@ -14,4 +14,5 @@ public class UserCreationDto
         Email = email;
         Password = password;
     }
+    
 }
