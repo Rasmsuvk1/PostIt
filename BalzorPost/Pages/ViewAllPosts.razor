@@ -21,7 +21,20 @@
                 <input type="text" class="commentInput" placeholder="comment" @bind="commentText"/>
                 <button @onclick="() => Comment(e.Title)">Comment</button>
                 <button @onclick="() => Delete(e.Title)">Delete</button>
-
+                <ul class="commentlist">
+                @foreach(var c in e.comments)
+                {
+             
+                        
+                            
+                            <li class="commentListItem">
+                                Username: @c.username
+                                Comment: @c.text
+                            </li>
+                       
+                       
+                }
+                </ul>
                 </div>
             }
         </ul>
@@ -58,6 +71,8 @@
         try
         {
             await postService.CreateCommentAsync(new CommentDto(title, UserInformation.getUserName(), commentText));
+            await JSRuntime.InvokeVoidAsync("location.reload");;
+
         }
         catch(Exception e)
         {
