@@ -5,6 +5,8 @@
 @using BalzorPost.Data
 @using Domain
 @inject IPostService postService
+@inject IJSRuntime JSRuntime
+
 
 
 
@@ -19,6 +21,7 @@
                 <p>@e.Body</p>
                 <input type="text" class="commentInput" placeholder="comment" @bind="commentText"/>
                 <button @onclick="() => Comment(e.Title)">Comment</button>
+                <button @onclick="() => Delete(e.Title)">Delete</button>
 
             }
         </ul>
@@ -62,5 +65,18 @@
 
         }
     }
-}
+    
+    private async void Delete(string title){
+        try
+        {
+            postService.DeletePostAsync(new DeletePostDto(title));
+            await JSRuntime.InvokeVoidAsync("location.reload");
+
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+        }
+      
+    }
 }

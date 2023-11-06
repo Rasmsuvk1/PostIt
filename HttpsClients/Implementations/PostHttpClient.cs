@@ -72,5 +72,15 @@ public class PostHttpClient : IPostService
         })!;
         return comment;
     }
+
+    public async void DeletePostAsync(DeletePostDto dto)
+    {
+        HttpResponseMessage response = await client.DeleteAsync($"/Post?postToDelete={dto.titleName}");
+        string result = await response.Content.ReadAsStringAsync();
+        if (!response.IsSuccessStatusCode)
+        {
+            throw new Exception(result);
+        }
+    }
 }
 
