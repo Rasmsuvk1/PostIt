@@ -1,0 +1,63 @@
+h3 {
+    font-size: 45px;
+    text-align: center;
+    padding: 1%;
+}
+
+.card{
+    background-color: #f5f5f5;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 20px;
+    display: flex;
+    margin-right: 15%;
+    margin-left: 15%;
+    text-align: center;
+    justify-content: center;
+    margin-bottom: 1%;
+}
+
+/* Style the buttons */
+.nice-button {
+    background-color: #007bff; /* Button background color */
+    color: #fff; /* Button text color */
+    padding: 10px 20px; /* Button padding */
+    border: none; /* Remove the button border */
+    border-radius: 5px; /* Add rounded corners */
+    font-size: 16px; /* Button text size */
+    cursor: pointer; /* Show a pointer cursor on hover */
+    margin-right: 10px; /* Add margin between buttons */
+    margin-bottom: 0.2%;
+    margin-top: 0.2%;
+}
+
+/* Move buttons to the left */
+.button-container {
+    text-align: left; /* Align buttons to the left within the container */
+}
+
+/* Add hover effect for buttons */
+.nice-button:hover {
+    background-color: #0056b3; /* Button background color on hover */
+}
+
+#textpost {
+    text-align: left;
+}
+#Titlepost {
+    font-size: 30px;
+    font: bold;
+    margin-bottom: 0.3%;
+}
+.commentInput {
+    width: 17%;
+    align-items: first;
+}
+
+.commentListItem {
+    font: bold;
+    text-align: left;
+    list-style-type: none;
+
+}
+

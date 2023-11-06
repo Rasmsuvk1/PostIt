@@ -20,6 +20,7 @@
         <div class="button-container">
             @if (UserInformation.getAuthLvl() > 0)
             {
+                
                 <input type="text" class="commentInput" placeholder="comment" @bind="commentText"/>
                 <button class="nice-button" @onclick="() => Comment(thePost.Title)">Comment</button>
                 <button class="nice-button" @onclick="() => Delete(thePost.Title)">Delete</button>

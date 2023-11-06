@@ -7,6 +7,7 @@
     background-color: rgba(0,0,0,0.4);
 }
 
+
 .navbar-brand {
     font-size: 1.1rem;
 }
@@ -38,7 +39,6 @@
         height: 10rem;
         display: flex;
         align-items: center;
-        text-align: center;
         line-height: 3rem;
     }
 
