@@ -18,11 +18,14 @@
                 <div class="card">
                 <p id="Titlepost">@e.Title</p>
                 <p id="textpost">@e.Body</p>
-                <input type="text" class="commentInput" placeholder="comment" @bind="commentText"/>
                 <div class="button-container">
-                    <button class="nice-button" @onclick="() => Comment(e.Title)">Comment</button>
-                    <button class="nice-button" @onclick="() => Delete(e.Title)">Delete</button>
-               </div>
+                    @if (UserInformation.getAuthLvl() > 0)
+                    {
+                        <input type="text" class="commentInput" placeholder="comment" @bind="commentText"/>
+                        <button class="nice-button" @onclick="() => Comment(e.Title)">Comment</button>
+                        <button class="nice-button" @onclick="() => Delete(e.Title)">Delete</button>
+                    }
+                </div>
                 <ul class="commentlist">
                 @foreach(var c in e.comments)
                 {
