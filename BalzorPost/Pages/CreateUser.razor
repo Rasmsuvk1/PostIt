@@ -2,32 +2,28 @@
 @using Domain.DTOs
 @using HttpsClients.ClientInterfaces
 @inject IUserService userService
+@inject NavigationManager Navigation
 <link href="css/CommonStyles.css" rel="stylesheet"/>
 
 <div class="card">
     <h3>Create User</h3>
-    <form @ref="userForm">
-    <div class="form-group field">
-        <input type="text" @bind="username" @bind:event="oninput" placeholder="Username"/>
-        @if (!string.IsNullOrEmpty(resultMsg))
-        {
-            <label style="color: @color">@resultMsg</label>
-        }
-        <input type="text" @bind="email" @bind:event="oninput" placeholder="Email"/>
-        @if (!string.IsNullOrEmpty(resultMsg))
-        {
-            <label style="color: @color">@resultMsg</label>
-        }
-        <input type="text" @bind="password" @bind:event="oninput" placeholder="Password"/>
-        @if (!string.IsNullOrEmpty(resultMsg))
-        {
-            <label style="color: @color">@resultMsg</label>
-        }
-    </div>
-    <div class="button-row">
-        <button @onclick="Create" disabled="@(string.IsNullOrEmpty(username))" class="acceptbtn">Create</button>
-    </div>
+    <form @onsubmit="Create">
+        <div class="form-group field">
+            <input type="text" @bind="username" @bind:event="oninput" placeholder="Username"/>
+
+            <input type="text" @bind="email" @bind:event="oninput" placeholder="Email"/>
+
+            <input type="text" @bind="password" @bind:event="oninput" placeholder="Password"/>
+
+        </div>
+        <div class="button-row">
+            <button @onclick="Create" disabled="@(string.IsNullOrEmpty(username))" class="acceptbtn">Create</button>
+        </div>
     </form>
+                @if (!string.IsNullOrEmpty(resultMsg))
+                {
+                    <label style="color: @color">@resultMsg</label>
+                }
 </div>
 
 
@@ -38,7 +34,6 @@
     private string password = "";
     private string resultMsg = "";
     private string color = "";
-    private ElementReference userForm;
 
 
     private async Task Create()
@@ -53,20 +48,13 @@
             password = "";
             resultMsg = "User successfully created";
             color = "green";
+            Navigation.NavigateTo("/");
         }
         catch (Exception e)
         {
             Console.WriteLine(e);
             resultMsg = e.Message;
             color = "red";
-        }
-    }
-
-    private async Task SubmitOnEnter(KeyboardEventArgs e)
-    {
-        if (e.Key == "Enter" && !string.IsNullOrEmpty(username))
-        {
-            await Create();
         }
     }
 
