@@ -11,5 +11,7 @@ public interface IPostService
 
     Task<Comment> CreateCommentAsync(CommentDto dto);
 
+    void DeletePostAsync(DeletePostDto dto);
+
 
 }
