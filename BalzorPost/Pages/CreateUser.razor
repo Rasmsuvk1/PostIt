@@ -3,24 +3,20 @@
 @using HttpsClients.ClientInterfaces
 @inject IUserService userService
 
-<h3>CreateUser</h3>
 <div class="card">
     <h3>Create User</h3>
     <div class="form-group field">
-        <label>User name:</label>
-        <label>Email:</label>
-        <label>Password:</label>
-        <input type="text" @bind="username" @bind:event="oninput"/>
+      <input type="text" @bind="username" @bind:event="oninput" placeholder="Username"/>
         @if (!string.IsNullOrEmpty(resultMsg))
         {
             <label style="color: @color">@resultMsg</label>
         }
-         <input type="text" @bind="email" @bind:event="oninput"/>
+         <input type="text" @bind="email" @bind:event="oninput" placeholder="Email"/>
                 @if (!string.IsNullOrEmpty(resultMsg))
                 {
                     <label style="color: @color">@resultMsg</label>
                 }
-         <input type="text" @bind="password" @bind:event="oninput"/>
+         <input type="text" @bind="password" @bind:event="oninput" placeholder="Password"/>
                 @if (!string.IsNullOrEmpty(resultMsg))
                 {
                     <label style="color: @color">@resultMsg</label>
