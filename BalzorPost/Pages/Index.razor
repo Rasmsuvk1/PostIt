@@ -6,22 +6,24 @@
 @inject NavigationManager Navigation
 @inject IUserService userService
 @inject IJSRuntime JsRuntime
+<link href="css/CommonStyles.css" rel="stylesheet"/>
 
 <PageTitle>Index</PageTitle>
 
 <div class = "loginBody">
     <h1>Post It!</h1>
     <p>Please login</p>
+    <form @onsubmit="Login">
     <input type="text" @bind="email" placeholder="Email" @bind:event="oninput"/>
     <input type="text" @bind="password" placeholder="Password" @bind:event="oninput"/>
     <button @onclick="Login">Login</button>
-
+    </form>
 </div>
 
 @code {
     private string email = "";
     private string password = "";
-
+    
     private async Task Login()
     {
 

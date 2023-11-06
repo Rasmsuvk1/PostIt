@@ -8,8 +8,9 @@
 
 <div class="card">
     <h3>Create a post</h3>
+    <form @onsubmit="Post">
     <div class="form-group field">
-
+        
         <input type="text" @bind="title" placeholder="Title" @bind:event="oninput"/>
 
         <input type="text" @bind="body" placeholder="text" @bind:event="oninput"/>
@@ -18,14 +19,14 @@
     <div class="button-row">
         <button @onclick="Post" class="acceptbtn">Post</button>
     </div>
+    </form>
 </div>
+
 
 
 @code {
     private string title = "";
     private string body = "";
-  
-
 
     private async Task Post()
     {
