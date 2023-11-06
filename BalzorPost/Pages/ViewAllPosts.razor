@@ -6,6 +6,8 @@
 @using Domain
 @inject IPostService postService
 @inject IJSRuntime JSRuntime
+@inject NavigationManager NavigationManager
+
 <link href="css/CommonStyles.css" rel="stylesheet"/>
 
 <div>
@@ -43,7 +45,6 @@
     
     private IEnumerable<Post> posts;
     private string commentText = "";
-    
     
     //A method that runs when the page is initialized
     protected override async Task OnInitializedAsync()
@@ -90,4 +91,5 @@
         }
     }
     
+   
 }
