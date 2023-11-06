@@ -1,10 +1,11 @@
 ﻿@using BalzorPost.Data
 @attribute [Authorize]
+@inject NavigationManager Navigation
 @inject IJSRuntime JsRuntime
 
 <div class="top-row ps-3 navbar navbar-dark">
     <div class="container-fluid">
-        <a class="navbar-brand" href="">BlazorPost
+        <a class="navbar-brand" href="ViewAllPosts">BlazorPost
         @if (UserInformation.getAuthLvl() > 0)
         {
             <p>@UserInformation.getUserName()</p>
@@ -26,12 +27,12 @@
                     <span class="oi oi-key" aria-hidden="true"></span> Login
                 </NavLink>
             </div>
+            <div class="nav-item px-3">
+                <NavLink class="nav-link" href="CreateUser">
+                    <span class="oi oi-beaker" aria-hidden="true"></span> CreateUser
+                </NavLink>
+            </div>
         }
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="CreateUser">
-                <span class="oi oi-beaker" aria-hidden="true"></span> CreateUser
-            </NavLink>
-        </div>
         <div class="nav-item px-3">
             <NavLink class="nav-link" href="ViewAllPosts">
                 <span class="oi oi-list-rich" aria-hidden="true"></span> View Posts
@@ -46,7 +47,7 @@
             </div>
             <div class="nav-item px-3" @onclick="LogOut">
                 <NavLink class="nav-link">
-                    <span class="oi oi-pencil" aria-hidden="true"></span> Log Out
+                    <span class="oi oi-account-logout" aria-hidden="true"></span> Log Out
                 </NavLink>
             </div>
         }
@@ -61,9 +62,11 @@
 
     private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
 
-    private void LogOut()
+    private async void LogOut()
     {
-        Console.WriteLine("logOut");
+        UserInformation.SetUserInfo(null,0);
+        Navigation.NavigateTo("/ViewAllPosts"); 
+        await JsRuntime.InvokeVoidAsync("location.reload");
     }
 
     private void ToggleNavMenu()
