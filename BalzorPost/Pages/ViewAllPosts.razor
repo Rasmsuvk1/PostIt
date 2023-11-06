@@ -6,9 +6,7 @@
 @using Domain
 @inject IPostService postService
 @inject IJSRuntime JSRuntime
-@inject NavigationManager NavigationManager
 
-<link href="css/CommonStyles.css" rel="stylesheet"/>
 
 <div>
     <h3>View All Posts</h3>
@@ -18,17 +16,19 @@
             @foreach (var e in posts)
             {
                 <div class="card">
-                <p>@e.Title</p>
-                <p>@e.Body</p>
+                <p id="Titlepost">@e.Title</p>
+                <p id="textpost">@e.Body</p>
                 <input type="text" class="commentInput" placeholder="comment" @bind="commentText"/>
-                <button @onclick="() => Comment(e.Title)">Comment</button>
-                <button @onclick="() => Delete(e.Title)">Delete</button>
+                <div class="button-container">
+                    <button class="nice-button" @onclick="() => Comment(e.Title)">Comment</button>
+                    <button class="nice-button" @onclick="() => Delete(e.Title)">Delete</button>
+               </div>
                 <ul class="commentlist">
                 @foreach(var c in e.comments)
                 {
                     <li class="commentListItem">
                         User @c.username commented:
-                         <p>@c.text</p>
+                         <p id="textpost">@c.text</p>
                     </li>
                    
                 }
@@ -45,6 +45,7 @@
     
     private IEnumerable<Post> posts;
     private string commentText = "";
+    
     
     //A method that runs when the page is initialized
     protected override async Task OnInitializedAsync()
@@ -91,5 +92,4 @@
         }
     }
     
-   
 }
