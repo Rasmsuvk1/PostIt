@@ -6,6 +6,7 @@
 @using Domain
 @inject IPostService postService
 @inject IJSRuntime JSRuntime
+@inject NavigationManager Navigation
 
 
 <div>
@@ -15,7 +16,7 @@
         <ul>
             @foreach (var e in posts)
             {
-                <div class="card">
+                <div class="card" @onclick="()=> OpenSpecificPost(e.Id)">
                     <p id="Titlepost">@e.Title</p>
                     <p>Posted by: @e.User.username</p>
                 <p id="textpost">@e.Body</p>
@@ -49,11 +50,17 @@
         await Get();
     }
 
+    private void OpenSpecificPost(int id)
+    {
+       Navigation.NavigateTo($"SpecificPostPage/{id}");
+    }
+
     private async Task Get()
     {
         try
         {
-            posts = await postService.Get();
+            GetPostDto dto = new GetPostDto(); 
+            posts = await postService.Get(dto);
         }
         catch (Exception e)
         {

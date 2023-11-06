@@ -21,9 +21,16 @@ public class PostHttpClient : IPostService
     }
 
 
-    public async Task<IEnumerable<Post>> Get()
+    public async Task<IEnumerable<Post>> Get(GetPostDto dto)
     {
-        string uri = "/Post";
+        string uri = "";
+        if (dto.ReturnId() == null)
+        {
+            uri = "/Post";
+        }else
+        {
+            uri = $"Post?id={dto.ReturnId()}";
+        }
 
         HttpResponseMessage response = await client.GetAsync(uri);
         string result = await response.Content.ReadAsStringAsync();

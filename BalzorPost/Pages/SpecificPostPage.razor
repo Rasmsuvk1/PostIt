@@ -1,4 +1,5 @@
-@page "/SpecificPostPage"
+
+@page "/SpecificPostPage/{postId:int}"
 @using BalzorPost.Data
 @using Domain
 @using Domain.DTOs
@@ -8,34 +9,37 @@
 
 <h3>SpecificPostPage</h3>
 
-            {
+
 <div class="card">
+    @if (thePost != null)
+    {
+        <p id="Titlepost">@thePost.Title</p>
+        <p id="textpost">Posted by: @thePost.User.username</p>
+        <p id="textpost">@thePost.Body</p>
     
-    <p id="Titlepost">@thePost.Title</p>
-    <p id="textpost">Posted by: @thePost.User.username</p>
-    <p id="textpost">@thePost.Body</p>
-    
-    <div class="button-container">
-        @if (UserInformation.getAuthLvl() > 0)
-        {
-            <input type="text" class="commentInput" placeholder="comment" @bind="commentText"/>
-            <button class="nice-button" @onclick="() => Comment(thePost.Title)">Comment</button>
-            <button class="nice-button" @onclick="() => Delete(thePost.Title)">Delete</button>
-        }
-    </div>
-    <ul class="commentlist">
-        @foreach (var c in thePost.comments)
-        {
-            <li class="commentListItem">
-                User @c.username commented:
-                <p id="textpost">@c.text</p>
-            </li>
+        <div class="button-container">
+            @if (UserInformation.getAuthLvl() > 0)
+            {
+                <input type="text" class="commentInput" placeholder="comment" @bind="commentText"/>
+                <button class="nice-button" @onclick="() => Comment(thePost.Title)">Comment</button>
+                <button class="nice-button" @onclick="() => Delete(thePost.Title)">Delete</button>
+            }
+        </div>
+        <ul class="commentlist">
+            @foreach (var c in thePost.comments)
+            {
+                <li class="commentListItem">
+                    User @c.username commented:
+                    <p id="textpost">@c.text</p>
+                </li>
 
-        }
-    </ul>
+            }
+        </ul>
+    }
 </div>
-
 @code {
+    [Parameter] public int postId { get; set; }
+    
     private Post thePost;
     private IEnumerable<Post> posts;
     private string commentText = "";
@@ -43,14 +47,17 @@
     //A method that runs when the page is initialized
     protected override async Task OnInitializedAsync()
     {
-        await Get();
+        GetPostDto dto = new GetPostDto();
+        dto.SetId(postId);
+        await Get(dto);
     }
 
-    private async Task Get()
+    private async Task Get(GetPostDto dto)
     {
         try
         {
-            posts = await postService.Get();
+           posts =  await postService.Get(dto);
+            thePost = posts.First();
         }
         catch (Exception e)
         {
