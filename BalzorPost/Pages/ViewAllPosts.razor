@@ -24,15 +24,11 @@
                 <ul class="commentlist">
                 @foreach(var c in e.comments)
                 {
-             
-                        
-                            
-                            <li class="commentListItem">
-                                Username: @c.username
-                                Comment: @c.text
-                            </li>
-                       
-                       
+                    <li class="commentListItem">
+                        User @c.username commented:
+                         <p>@c.text</p>
+                    </li>
+                   
                 }
                 </ul>
                 </div>
