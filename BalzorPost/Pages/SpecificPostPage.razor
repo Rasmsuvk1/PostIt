@@ -30,7 +30,7 @@
             @foreach (var c in thePost.comments)
             {
                 <li class="commentListItem">
-                    User @c.username commented:
+                    @c.username commented:
                     <p id="textpost">@c.text</p>
                 </li>
 
