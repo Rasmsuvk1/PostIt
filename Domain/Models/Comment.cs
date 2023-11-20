@@ -1,7 +1,10 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace Domain;
-// this doesnt have a dto, since the DTO would be the same as the Comment class.
 public class Comment
 {
+    [Key]
+    public int commentId { get; set; }
     public string username { get; set; }
     public string text { get; set; }
 
@@ -10,4 +13,6 @@ public class Comment
         this.username = username;
         this.text = text;
     }
+    
+    public Comment(){}
 }

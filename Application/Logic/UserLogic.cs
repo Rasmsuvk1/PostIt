@@ -22,12 +22,7 @@ public class UserLogic : IUserLogic
             throw new Exception("Username already taken!");
 
         ValidateData(dto);
-        User toCreate = new User
-        {
-            username = dto.UserName,
-            email = dto.Email,
-            password = dto.Password
-        };
+        User toCreate = new User(dto.UserName, dto.Email, dto.Password);
         
         User created = await userDao.CreateAsync(toCreate);
         

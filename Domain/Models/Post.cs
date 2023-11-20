@@ -1,21 +1,25 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace Domain;
 
 public class Post
 {
+    [Key]
     public int Id { get; set; }
-    public User User { get; set; }
+
+    public string Username{ get; set; }
     public string Title { get; set; }
     public string Body{ get; set; }
-    
-    public List<Comment> comments { get; set; }
+
+    public List<Comment> comments { get; set; } = new List<Comment>();
 
     public Post( User user, string title, string body)
     {
-        User = user;
+        Username = user.username;
         Title = title;
         Body = body;
-        comments = new List<Comment>();
     }
+    public Post(){ }
     
     public void addComment(Comment comment)
     {

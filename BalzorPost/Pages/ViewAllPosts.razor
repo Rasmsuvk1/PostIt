@@ -16,7 +16,7 @@
             {
                 <div class="card" @onclick="()=> OpenSpecificPost(e.Id)">
                     <p id="Titlepost">@e.Title</p>
-                    <p>Posted by: @e.User.username</p>
+                    <p>Posted by: @e.Username</p>
                 <p id="textpost">@e.Body</p>
                 <ul class="commentlist">
                 @foreach(var c in e.comments)

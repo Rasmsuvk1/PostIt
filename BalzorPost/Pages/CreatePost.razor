@@ -8,7 +8,6 @@
 
 <div class="card">
     <h3>Create a post</h3>
-    <form @onsubmit="Post">
     <div class="form-group field">
         
         <input type="text" @bind="title" placeholder="Title" @bind:event="oninput"/>
@@ -19,7 +18,6 @@
     <div class="button-row">
         <button @onclick="Post" class="acceptbtn">Post</button>
     </div>
-    </form>
 </div>
 
 
@@ -28,19 +26,20 @@
     private string title = "";
     private string body = "";
 
-    private async Task Post()
+    private async Task<bool> Post()
     {
         try
         {
+            Console.WriteLine("I Was triggered");
             await postService.CreatePostAsync(new PostCreationDto(UserInformation.getUserName(), title, body));
             title = "";
             body = "";
-            
+            return false; // Prevent the default form submission behavior
         }
-        catch (Exception e)
+        catch (Exception ex)
         {
-            Console.WriteLine(e);
-           
+            Console.WriteLine(ex);
+            return false;
         }
     }
 

@@ -19,10 +19,8 @@ public class PostLogic:IPostLogic
     {
         
         ValidateData(dto);
-        Post toCreate = new Post(new User{username = dto.Username}, dto.Title,dto.Body);
-        
+        Post toCreate = new Post(new User(dto.Username,null, null), dto.Title,dto.Body);
         Post created = await postDao.CreateAsync(toCreate);
-        
         return created;
     }
 

@@ -13,11 +13,13 @@ public class PostDao : IPostDao
     {
         this.context = context;
     }
-    public Task<Post> CreateAsync(Post post)
+    public async Task<Post> CreateAsync(Post post)
     {
         
         int id = 1;
-        if (context.Posts.Any())
+        
+        
+        if ( context.Posts.Any())
         {
             id = context.Posts.Max(t => t.Id);
             id++;
@@ -27,7 +29,7 @@ public class PostDao : IPostDao
         context.Posts.Add(post);
         context.SaveChanges();
 
-        return Task.FromResult(post);
+        return post;
         
     }
 

@@ -6,6 +6,7 @@
 @using HttpsClients.ClientInterfaces
 @inject IPostService postService
 @inject IJSRuntime JSRuntime
+@inject NavigationManager Navigation
 
 <h3>SpecificPostPage</h3>
 
@@ -14,7 +15,7 @@
     @if (thePost != null)
     {
         <p id="Titlepost">@thePost.Title</p>
-        <p id="textpost">Posted by: @thePost.User.username</p>
+        <p id="textpost">Posted by: @thePost.Username</p>
         <p id="textpost">@thePost.Body</p>
     
         <div class="button-container">
@@ -23,7 +24,10 @@
                 
                 <input type="text" class="commentInput" placeholder="comment" @bind="commentText"/>
                 <button class="nice-button" @onclick="() => Comment(thePost.Title)">Comment</button>
-                <button class="nice-button" @onclick="() => Delete(thePost.Title)">Delete</button>
+                @if (UserInformation.getUserName().Equals(thePost.Username))
+                {
+                    <button class="nice-button" @onclick="() => Delete(thePost.Title)">Delete</button>
+                }
             }
         </div>
         <ul class="commentlist">
@@ -85,7 +89,8 @@
         try
         {
             postService.DeletePostAsync(new DeletePostDto(title));
-            await JSRuntime.InvokeVoidAsync("location.reload");;
+            Navigation.NavigateTo($"/ViewAllPosts");
+            await JSRuntime.InvokeVoidAsync("location.reload");
         }
         catch (Exception e)
         {
